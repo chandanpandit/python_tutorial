@@ -18,6 +18,8 @@ def draw(window):
 
 def cut(row, column):
     global turn
+    global counter
+
     if matrix[row][column] == 0:
         mark = "X" if turn == 1 else "0"
         color = "red" if turn == 1 else "blue"
@@ -31,6 +33,11 @@ def cut(row, column):
             turn = 2 if turn == 1 else 1  # change turn
     else:
         messagebox.showerror("Cell already selected", "Please select an empty cell.")
+    if counter >= 9:
+        messagebox.showinfo("Draw!", "The game was draw!")
+        reset_game()
+    else:
+        counter = counter + 1
 
 
 def check_winner():
@@ -48,6 +55,8 @@ def check_winner():
 
 
 def reset_game():
+    global counter
+    counter = 0
     for row in range(3):
         for column in range(3):
             matrix[row][column] = 0
@@ -56,6 +65,7 @@ def reset_game():
 
 root = Tk()
 turn = 1
+counter = 0
 all_buttons = draw(root)
 matrix = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
 
