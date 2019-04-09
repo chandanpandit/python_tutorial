@@ -31,14 +31,15 @@ def cut(row, column):
             reset_game()
         else:
             turn = 2 if turn == 1 else 1  # change turn
+        # check if all cells filled
+        if counter >= 9:
+            messagebox.showinfo("Draw!", "The game was draw!")
+            reset_game()
+        else:
+            counter = counter + 1
     else:
         messagebox.showerror("Cell already selected", "Please select an empty cell.")
-    if counter >= 9:
-        messagebox.showinfo("Draw!", "The game was draw!")
-        reset_game()
-    else:
-        counter = counter + 1
-
+    
 
 def check_winner():
     global turn
